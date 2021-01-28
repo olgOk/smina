@@ -19,7 +19,7 @@ class MolPosLookup:
             pos = val['pos']
             t = self.__makeinttuple(pos)
             self.data[t] = val['energy']
-    
+   
     def __distsq(selfself, a, b):
         return sum([(x[0]-x[1])*(x[0]-x[1]) for x in zip(a,b)])
     #find the data item with the closest coordinate to xyz
@@ -80,8 +80,8 @@ def show(sel, file,min=-1,max=1):
     #now get atom data from pymol
     n_states = cmd.count_states(sel)
     if(n_states != len(statesdata)):
-        print "Inconsistent number of states/molecules";
-        return;
+        print("Inconsistent number of states/molecules")
+        return
     
     for i in xrange(1,n_states+1):
         energies = MolPosLookup(statesdata[i-1])
@@ -89,7 +89,7 @@ def show(sel, file,min=-1,max=1):
         for a in model.atom:
             e = energies.energyForPos(a.coord)
             if e is None:
-                print "Missing",i,a.coord
+                print ("Missing",i,a.coord)
             else:
                 color = gwr(e,min,max,0)
                 cmd.set_color("smina_color%d" % a.index,color)
